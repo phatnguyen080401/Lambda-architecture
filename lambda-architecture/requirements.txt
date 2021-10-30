@@ -1,0 +1,4 @@
+cassandra-driver
+pyspark
+tweepy==3.5
+kafka-python
