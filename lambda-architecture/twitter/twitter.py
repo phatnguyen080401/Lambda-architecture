@@ -51,8 +51,6 @@ class ListenerTS(StreamListener):
 
   def on_data(self, raw_data):
     try:
-      # data_json = json.loads(raw_data)
-      # tweet = data_json['text'].encode('utf-8')
       self._producer.send(self._topic, str.encode(raw_data))
 
       logger.info(f"Tweet: {raw_data}")
