@@ -31,7 +31,7 @@ class TwitterStreamer:
       self._topic = topic
 
   def stream_tweets(self):
-    keyword = ["Bitcoin",  "Ehereum", "Keycaps"]
+    keyword = ['#coronavirus', '#COVID-19', '#COVID19', '#COVID']
     
     while True:
       try:
