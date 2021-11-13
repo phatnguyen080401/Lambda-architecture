@@ -1,10 +1,10 @@
-start-cluster:
+start-docker:
 	docker-compose -f ./setup/docker-compose.yml up
 
-shutdown-cluster:
+shutdown-docker:
 	docker-compose -f ./setup/docker-compose.yml down	
 
-reset-volume-cluster:
+reset-volume-docker:
 	rm -r ./setup/docker/volumes/cassandra_seed/*
 	rm -r ./setup/docker/volumes/cassandra_node/*
 	rm -r ./setup/docker/volumes/kafka-1/*
@@ -16,4 +16,8 @@ setup-env:
 
 run:
 	cd ./lambda-architecture && \
-	pipenv run python3 main.py
+	pipenv run python main.py
+
+kafka-produce:
+	cd ./lambda-architecture && \
+	pipenv run python -B /kafkaProducer/producer.py
