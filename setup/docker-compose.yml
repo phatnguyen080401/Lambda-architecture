@@ -1,47 +1,49 @@
 version: "3.7"
 
 services:
-  # cassandra-seed:
-  #   container_name: cassandra-seed
-  #   image: cassandra
-  #   ports: 
-  #     - "9042:9042"
-  #   environment:
-  #     - CASSANDRA_SEEDS=cassandra-seed
-  #     - CASSANDRA_CLUSTER_NAME=Cassandra Cluster
-  #     - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
-  #     - CASSANDRA_DC=DC1
-  #   restart: always
-  #   volumes:
-  #     - ./docker/volumes/cassandra-seed:/var/lib/cassandra
-  #   networks: 
-  #     - cass
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  cassandra-seed:
+    container_name: cassandra-seed
+    image: cassandra
+    ports: 
+      - "9042:9042"
+    environment:
+      - CASSANDRA_SEEDS=cassandra-seed
+      - CASSANDRA_CLUSTER_NAME=Cassandra Cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+    restart: always
+    volumes:
+      - ../lambda-architecture/init:/init
+      - ./docker/volumes/cassandra-seed:/var/lib/cassandra
+    networks: 
+      - cass
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
-  # cassandra-node:
-  #   container_name: cassandra-node
-  #   image: cassandra
-  #   environment:
-  #     - CASSANDRA_SEEDS=cassandra-seed
-  #     - CASSANDRA_CLUSTER_NAME=Cassandra Cluster
-  #     - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
-  #     - CASSANDRA_DC=DC1
-  #   restart: always
-  #   volumes: 
-  #     - ./docker/volumes/cassandra-node:/var/lib/cassandra
-  #   depends_on: 
-  #     - cassandra-seed
-  #   networks: 
-  #     - cass
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 50
+  cassandra-node:
+    container_name: cassandra-node
+    image: cassandra
+    environment:
+      - CASSANDRA_SEEDS=cassandra-seed
+      - CASSANDRA_CLUSTER_NAME=Cassandra Cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+    restart: always
+    volumes: 
+      - ../lambda-architecture/init:/init
+      - ./docker/volumes/cassandra-node:/var/lib/cassandra
+    depends_on: 
+      - cassandra-seed
+    networks: 
+      - cass
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+      interval: 10s
+      timeout: 5s
+      retries: 50
 
   zookeeper:
     container_name: zookeeper
@@ -72,7 +74,6 @@ services:
      - KAFKA_INTER_BROKER_LISTENER_NAME=INSIDE
      - KAFKA_LISTENERS=INSIDE://0.0.0.0:9093, OUTSIDE://0.0.0.0:9092
      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-    #  - KAFKA_CREATE_TOPICS="twitter:3:1"
     volumes:
       - ./docker/volumes/kafka:/kafka/kafka-logs-kafka
     networks:
