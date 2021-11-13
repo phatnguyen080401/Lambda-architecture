@@ -5,9 +5,9 @@ For the ease of deployment Docker Compose script is used. It still needs some ma
 
 * Docker
   * Edit `docker-compose.yml` file and replace paths in `volumes` to match your environment
+  * To start all the services run this command from the main project folder: docker-compose up
 * Cassandra  
-  * In another terminal, connect to Cassandra instance with command like:
-  `docker exec -it cassandra-seed bash`
+  * In another terminal, connect to Cassandra instance with command like: `docker exec -it cassandra-seed bash`
   * Once inside, initialise Cassandra's keyspace: `cqlsh -f init/init.sql`
   * You can also run `cqlsh` and start issuing CQL statements directly against Cassandra
 
