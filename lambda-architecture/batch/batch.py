@@ -54,3 +54,4 @@ class Batch:
       self.save_to_cassandra(df)
     except Exception as e:
       logger.error(e)
+      
