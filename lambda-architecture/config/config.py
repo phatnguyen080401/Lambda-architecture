@@ -27,10 +27,6 @@ config = {
     "KAFKA_TOPIC"        : parser.get('KAFKA', 'KAFKA_TOPIC')
   },
 
-  "SPARK": {
-
-  },
-
   "TWITTER": {
     "CONSUMER_KEY"       : parser.get('TWITTER', 'CONSUMER_KEY'),
     "CONSUMER_SECRET"    : parser.get('TWITTER', 'CONSUMER_SECRET'),
