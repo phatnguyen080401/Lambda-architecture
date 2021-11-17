@@ -31,8 +31,16 @@ For the ease of deployment Docker Compose script is used. It still needs some ma
   make setup-env
 ```
 
-4. Run project
+4. Run project (Must run in order)
 
 ```
-  make run
+  1. make kafka-produce
+  2. make streaming-layer
+  3. make speed-layer
+  4. make batch-layer
+```
+5. Analyze
+
+```
+  Go to notebook for analyzing
 ```
