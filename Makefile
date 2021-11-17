@@ -14,10 +14,18 @@ setup-env:
 	cd ./lambda-architecture && \
 	pipenv install -r requirements.txt
 
-run:
-	cd ./lambda-architecture && \
-	pipenv run python main.py
-
 kafka-produce:
 	cd ./lambda-architecture && \
-	pipenv run python -B /kafkaProducer/producer.py
+	pipenv run python producer.py
+
+streaming-layer:
+	cd ./lambda-architecture && \
+	pipenv run python streaming.py
+
+batch-layer:
+	cd ./lambda-architecture && \
+	pipenv run python batch.py
+
+speed-layer:
+	cd ./lambda-architecture && \
+	pipenv run python speed.py

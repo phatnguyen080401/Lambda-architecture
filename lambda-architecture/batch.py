@@ -55,3 +55,5 @@ class Batch:
     except Exception as e:
       logger.error(e)
       
+if __name__ == '__main__':
+  Batch().run()

@@ -8,6 +8,9 @@ cassandra-driver = "*"
 pyspark = "*"
 tweepy = "==3.5"
 kafka-python = "*"
+pandas = "*"
+pyarrow = "*"
+plotly = "*"
 
 [dev-packages]
 

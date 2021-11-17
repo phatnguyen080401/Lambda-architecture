@@ -29,4 +29,5 @@ class Producer:
   def produce():
     TwitterStreamer(producer=Producer.producer, topic=KAFKA_TOPIC).stream_tweets()
 
-  
+if __name__ == '__main__':
+  Producer.produce()
