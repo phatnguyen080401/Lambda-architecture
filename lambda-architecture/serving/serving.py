@@ -44,7 +44,7 @@ class Serving:
                     .options(table="speed_layer", keyspace=CLUSTER_KEYSPACE) \
                     .load()
     
-      logger.info("Get data from batch layer")
+      logger.info("Get data from speed layer")
     except Exception as e:
       logger.error(e)
     
@@ -60,7 +60,13 @@ class Serving:
     batch_df_to_pandas = batch_df.rdd.sortBy(lambda x: len(x['tweet_text']), ascending=False) \
                                             .toDF() \
                                             .to_pandas_on_spark()
-    top_100_users_tweet_words = batch_df_to_pandas.head(100)
+    batch_df_to_pandas["word_count"] = batch_df_to_pandas["tweet_text"].map(lambda x: len(x))
+    
+    top_100_users_tweet_words = batch_df_to_pandas \
+                                              .groupby("user_name") \
+                                              .first() \
+                                              .sort_values("word_count") \
+                                              .head(100)
 
     return top_100_users_tweet_words
 
@@ -74,6 +80,12 @@ class Serving:
     speed_df_to_pandas = speed_df.rdd.sortBy(lambda x: len(x['hashtags']), ascending=False) \
                                          .toDF() \
                                          .to_pandas_on_spark()
-    top_100_users_hashtags = speed_df_to_pandas.head(100)
+    speed_df_to_pandas["hashtag_count"] = speed_df_to_pandas["hashtags"].map(lambda x: len(x))
+    
+    top_100_users_hashtags = speed_df_to_pandas \
+                                              .groupby("user_name") \
+                                              .first() \
+                                              .sort_values("hashtag_count") \
+                                              .head(100)
 
     return top_100_users_hashtags
