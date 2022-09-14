@@ -1,9 +1,12 @@
+import sys
+sys.path.append(".")
+
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka import KafkaProducer
-from twitter import TwitterStreamer
+from twitter.twitter import TwitterStreamer
 
-from config import config
-from logger import Logger
+from config.config import config
+from logger.logger import Logger
 
 KAFKA_ENDPOINT = "{0}:{1}".format(config['KAFKA']['KAFKA_ENDPOINT'], config['KAFKA']['KAFKA_ENDPOINT_PORT'])
 KAFKA_TOPIC    = config['KAFKA']['KAFKA_TOPIC']

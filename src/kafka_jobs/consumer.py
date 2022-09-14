@@ -22,7 +22,7 @@ CLUSTER_KEYSPACE = config['CASSANDRA']['CLUSTER_KEYSPACE']
 
 logger = Logger('Twitter-Lake')
 
-class Streaming:
+class Consumer:
   def __init__(self):
     self._spark = SparkSession \
             .builder \
@@ -74,7 +74,7 @@ class Streaming:
     try:
         records = batch_df.count()
 
-        parse_df = batch_df.rdd.map(lambda x: Streaming.parse(json.loads(x.value))).toDF(schema)
+        parse_df = batch_df.rdd.map(lambda x: Consumer.parse(json.loads(x.value))).toDF(schema)
 
         parse_df \
             .write \
@@ -154,4 +154,4 @@ class Streaming:
       logger.error(e)
 
 if __name__ == '__main__':
-  Streaming().run()
+  Consumer().run()
