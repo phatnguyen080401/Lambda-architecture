@@ -1,6 +1,9 @@
+import sys
+sys.path.append(".")
+
 import os
 import configparser
-from helper import Helper
+from helper.helper import Helper
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
