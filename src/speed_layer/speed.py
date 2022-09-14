@@ -1,11 +1,14 @@
+import sys
+sys.path.append(".")
+
 import json
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from config import config
-from logger import Logger
+from config.config import config
+from logger.logger import Logger
 
 KAFKA_ENDPOINT = "{0}:{1}".format(config['KAFKA']['KAFKA_ENDPOINT'], config['KAFKA']['KAFKA_ENDPOINT_PORT'])
 KAFKA_TOPIC    = config['KAFKA']['KAFKA_TOPIC']
