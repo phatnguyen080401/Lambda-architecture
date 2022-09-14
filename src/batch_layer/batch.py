@@ -1,9 +1,12 @@
+import sys
+sys.path.append(".")
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from config import config
-from logger import Logger
+from config.config import config
+from logger.logger import Logger
 
 CLUSTER_ENDPOINT = "{0}:{1}".format(config['CASSANDRA']['CLUSTER_HOST'], config['CASSANDRA']['CLUSTER_PORT'])
 CLUSTER_KEYSPACE = config['CASSANDRA']['CLUSTER_KEYSPACE']
@@ -17,7 +20,7 @@ class Batch:
             .master("local[*]") \
             .appName("Batch-Layer") \
             .config("spark.cassandra.connection.host", CLUSTER_ENDPOINT) \
-            .config("spark.jars.packages", "com.datastax.spark:spark-cassandra-connector_2.12:3.1.0") \
+            .config("spark.jars.packages", "com.datastax.spark:spark-cassandra-connector_2.12:3.2.0") \
             .getOrCreate()
     
     self._spark.sparkContext.setLogLevel("ERROR")
@@ -53,5 +56,5 @@ class Batch:
     except Exception as e:
       logger.error(e)
       
-# if __name__ == '__main__':
-#   Batch().run()
+if __name__ == '__main__':
+  Batch().run()
