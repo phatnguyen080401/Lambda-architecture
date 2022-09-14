@@ -1,18 +1,20 @@
 # Lambda-architecture
+In this project, we are trying to build data pipeline using Lambda architecture to handle massive quantities of data by 
+taking advantage of both batch and stream processing methods. Besides, we also analyze Twitter's tweets.
+
+## Prerequisite
+* Python 3.*
+* Apache Spark 3.2.2
+* Account for Twitter API
 
 ## Setup
-For the ease of deployment Docker Compose script is used. It still needs some manual steps, however.
-
-* Docker
-  * Edit `docker-compose.yml` file and replace paths in `volumes` to match your environment
-  * To start all the services run this command from the main project folder: docker-compose up
-* Cassandra  
-  * In another terminal, connect to Cassandra instance with command like: `docker exec -it cassandra-seed bash`
-  * Once inside, initialise Cassandra's keyspace: `cqlsh -f init/init.sql`
-  * You can also run `cqlsh` and start issuing CQL statements directly against Cassandra
+1. **Config.ini file**
+   * Change `config.template.ini` to `config.ini`
+   * Adjust some basic value in `config.ini`
+2. **logs folder**
+   * Grant full permission : `sudo chmod a+rwx src/logs`
 
 ## Usage
-
 1. Clone repository
 
 ```
@@ -31,13 +33,10 @@ For the ease of deployment Docker Compose script is used. It still needs some ma
   make setup-env
 ```
 
-4. Run project (Must run in order)
+4. Run project 
 
 ```
-  1. make kafka-produce
-  2. make streaming-layer
-  3. make speed-layer
-  4. make batch-layer
+   make start-all
 ```
 5. Analyze
 
