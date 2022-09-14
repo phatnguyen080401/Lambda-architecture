@@ -1,9 +1,12 @@
+import sys
+sys.path.append(".")
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from config import config
-from logger import Logger
+from config.config import config
+from logger.logger import Logger
 
 CLUSTER_ENDPOINT = "{0}:{1}".format(config['CASSANDRA']['CLUSTER_HOST'], config['CASSANDRA']['CLUSTER_PORT'])
 CLUSTER_KEYSPACE = config['CASSANDRA']['CLUSTER_KEYSPACE']
