@@ -1,9 +1,12 @@
+import sys
+sys.path.append(".")
+
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 
-from config import config
-from logger import Logger
+from config.config import config
+from logger.logger import Logger
 
 CONSUMER_KEY        = config['TWITTER']['CONSUMER_KEY']
 CONSUMER_SECRET     = config['TWITTER']['CONSUMER_SECRET']
