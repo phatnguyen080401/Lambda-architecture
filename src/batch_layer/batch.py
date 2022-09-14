@@ -1,5 +1,3 @@
-import json
-
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
@@ -55,5 +53,5 @@ class Batch:
     except Exception as e:
       logger.error(e)
       
-if __name__ == '__main__':
-  Batch().run()
+# if __name__ == '__main__':
+#   Batch().run()

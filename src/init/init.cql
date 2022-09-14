@@ -4,8 +4,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
 USE twitter; 
 
 DROP TABLE IF EXISTS twitter_lake;
-
-CREATE TABLE IF NOT EXISTS twitter_lake (
+CREATE TABLE twitter_lake (
             tweet_id double,
             user_description text,
             user_favourites double,
@@ -24,8 +23,7 @@ CREATE TABLE IF NOT EXISTS twitter_lake (
 );
 
 DROP TABLE IF EXISTS batch_layer;
-
-CREATE TABLE IF NOT EXISTS batch_layer (
+CREATE TABLE batch_layer (
             user_id double,
             user_name text,
             tweet_text text,
@@ -34,8 +32,7 @@ CREATE TABLE IF NOT EXISTS batch_layer (
 );
 
 DROP TABLE IF EXISTS speed_layer;
-
-CREATE TABLE IF NOT EXISTS speed_layer (
+CREATE TABLE speed_layer (
             created_at text, 
             hashtags list<text>, 
             tweet_text text,

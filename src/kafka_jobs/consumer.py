@@ -1,12 +1,15 @@
+import sys
+sys.path.append(".")
+
 import os
 import json
 
-from pyspark.sql.functions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
+from pyspark.sql.functions import *
 
-from config import config
-from logger import Logger
+from config.config import config
+from logger.logger import Logger
 
 # Add dependencies when linking with kafka 
 # os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 pyspark-shell'
