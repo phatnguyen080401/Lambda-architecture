@@ -10,7 +10,7 @@ __pycache__/
 env/
 venv/
 
-/setup/docker/
+/deploy/docker/
 /src/logs/*.log
 config.ini
 .idea
