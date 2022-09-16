@@ -4,7 +4,7 @@ taking advantage of both batch and stream processing methods. Besides, we also a
 
 ## Prerequisite
 * Python 3.*
-* Apache Spark 3.2.2
+* Apache Spark 3.2.*
 * Account for Twitter API
 
 ## Setup
