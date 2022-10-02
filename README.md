@@ -43,3 +43,6 @@ taking advantage of both batch and stream processing methods. Besides, we also a
 ```
   Go to notebook for analyzing
 ```
+
+## Common Error
+1. If not find **twitter** keyspace, run container `cassandra-init-schema` again
